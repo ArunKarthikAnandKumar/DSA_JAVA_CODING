@@ -42,6 +42,9 @@ for (char key : hm.keySet()) {
 }
 
 boolean hasKey = hm.containsKey('a'); // Check if key 'a' exists
+
+for checking if 2 equal
+return h1.equals(h2);
 ```
 
 **Example: HashMap with List as Value**
