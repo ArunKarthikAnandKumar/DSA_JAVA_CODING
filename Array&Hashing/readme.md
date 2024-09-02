@@ -1,3 +1,53 @@
+# HasHing Theory
+To count Frequency of Numbers of Fixed Length:
+### Number Hashing
+```
+ int[] hash = new int[13];
+        for (int i = 0; i < n; i++) {
+            hash[arr[i]] += 1;
+        }
+```
+### Character Hashing
+
+Lower case
+```
+ int[] hash = new int[26];
+        for (int i = 0; i < s.length(); i++) {
+            hash[s.charAt(i) - 'a']++;
+        }
+```
+Both Upper and lower
+
+```
+ //precompute:
+        int[] hash = new int[256];
+        for (int i = 0; i < s.length(); i++) {
+            hash[s.charAt(i)]++;
+        }
+```
+
+ ```
+ //precompute:
+        HashMap<Integer, Integer> mp = new HashMap<>();
+        for (int i = 0; i < n; i++) {
+            int key = arr[i];
+            int freq = 0;
+            if (mp.containsKey(key)) freq = mp.get(key); // fetching from the map
+            freq++;
+            or 
+            hm.put(hm.getOrDefault(c,0)+1);
+            mp.put(key, freq); // inserting into the map
+        }
+
+```
+# What is collision & How the hashing works:
+Hashing is done using several methods. Among them, the three most common ones are
+
+- Division method
+- Folding method
+- Mid-Square method
+
+
 # Duplicate Integer
  
 Given an integer array nums, return true if any value appears more than once in the array, otherwise return false.
