@@ -25,6 +25,16 @@ HashSet<Character> hs = new HashSet<>();
 Collections.addAll(hs, 'a', 'e', 'i', 'o', 'u');
 
 boolean contains = hs.contains('a'); // Check if 'a' is in the set
+
+// For quick Lookup
+ Set<String> obstacleSet = new HashSet<>();
+        for (int[] obstacle : obstacles) {
+            obstacleSet.add(obstacle[0] + "," + obstacle[1]);
+        }
+
+         if (obstacleSet.contains(nx + "," + ny)) {
+                        break; // Stop if there's an obstacle
+                    }
 ```
 
 ## HashMap
