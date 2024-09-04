@@ -106,6 +106,9 @@ String reversed = new StringBuilder(s).reverse().toString(); // Reverse a string
 // Clear the StringBuilder
 sb.setLength(0);
 
+for getting Integer Value directly
+int res=sb.charAt(i)-'0';
+
 // Split string by whitespace
 String[] parts = s.split("\\s+");
 
