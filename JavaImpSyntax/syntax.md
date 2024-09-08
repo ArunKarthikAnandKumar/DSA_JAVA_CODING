@@ -17,7 +17,7 @@ All Java collections (`HashMap`, `HashSet`, `List`) support the following method
 ## HashSet
 
 A `HashSet` is a collection that contains no duplicate elements.
-
+###### For easy access of elements in array convert to hashset.
 ### Example: HashSet Usage
 
 ```java
