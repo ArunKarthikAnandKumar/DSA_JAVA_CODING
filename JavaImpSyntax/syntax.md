@@ -108,6 +108,10 @@ String sub = s1.substring(i, j); // Get substring from i to j-1
 boolean equals = s1.equals(s2); // Compare strings for equality
 
 String reversed = new StringBuilder(s).reverse().toString(); // Reverse a string
+
+txt.toUpperCase()
+txt.toLowerCase()
+
 ```
 
 # StringBuilder Usage

@@ -106,3 +106,16 @@ class Solution {
     }
 }
 ```
+
+# Cake cut Piece
+#### n*(n+1)/2 +1
+
+FOR Result mod 10^9+7
+int MOD = 1000000007;
+
+System.out.println("Ceiling of '" + d1 + "' = " + Math.ceil(d1));
+
+System.out.println("Floor of '" + d1 + "' = " + Math.floor(d1));
+
+A-65 Z-90
+a-97 z-122
