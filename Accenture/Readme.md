@@ -119,3 +119,10 @@ System.out.println("Floor of '" + d1 + "' = " + Math.floor(d1));
 
 A-65 Z-90
 a-97 z-122
+
+# Convert all Upper or Lower based on count
+
+# Type conversion of long answer
+long ans=(long) n*(n+1)/2
+mod=1000000007;
+sout(ans%mod)

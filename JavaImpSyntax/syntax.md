@@ -128,6 +128,9 @@ String[] parts = s.split("\\s+");
 
 // Convert to uppercase
 String upper = s.toUpperCase();
+
+//Trim white spaces
+String s=s.nextLine().trim();
 ```
 
 # Characters
