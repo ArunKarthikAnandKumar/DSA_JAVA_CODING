@@ -41,8 +41,9 @@ public class Main {
     }
 
     public static void main(String[] args) {
-       
-        int n1=451,n2=349;
+       Scanner s =new Scanner(System.in);
+        int n1=s.nextInt();
+        int n2=s.nextInt();
         System.out.println(SUM(n1,n2));
 
     }

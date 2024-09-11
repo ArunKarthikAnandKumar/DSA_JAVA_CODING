@@ -258,3 +258,147 @@ public class Main {
 }
 
 ```
+
+
+# Perfect squares
+
+```
+int sqrt = (int) Math.sqrt(num);
+return (sqrt * sqrt == num);
+```
+
+# Make House of N levels
+if series
+sum ap sn=n/2[2*a +(n-1)*d];
+
+# triangle house
+3n^2 +n /2
+
+# Abs difference we get when in sorted order
+```
+ int[] arr = { 13, 7, 6, 45, 21, 9, 101, 102 };
+
+        // Calling the sort() method present
+        // inside Arrays class
+        Arrays.sort(arr);
+
+```
+
+
+# Minimum steps to Reach top
+```
+  public int minStepsToReachTop(int N, int M) {
+        // If M is 0, Alice can only climb 1 step at a time
+        if (M == 0) return N;
+        
+        // Number of M-steps Alice can take
+        int stepsM = N / M;
+        // Remaining steps after using M-steps
+        int remainingSteps = N % M;
+        
+        // Total minimum steps needed
+        return stepsM + remainingSteps;
+    }
+```
+
+# Happy Number
+create hashset to add new sumsq value calculated if any repetn break the loop.
+
+# Subarray 0 and 1
+```
+/******************************************************************************
+
+Welcome to GDB Online.
+GDB online is an online compiler and debugger tool for C, C++, Python, Java, PHP, Ruby, Perl,
+C#, OCaml, VB, Swift, Pascal, Fortran, Haskell, Objective-C, Assembly, HTML, CSS, JS, SQLite, Prolog.
+Code, Compile, Run and Debug online from anywhere in world.
+
+*******************************************************************************/
+public class Main
+{
+	public static void main(String[] args) {
+		int nums[]={1,1,0,1,0};
+		int zero=0,one=0;
+		for(int n:nums){
+		    if(n==0){
+		        zero++;
+		    }else{
+		        one++;
+		    }
+		}
+		int l=0,r=nums.length-1;
+		int max=0;
+		while(l<r){
+		    int sum=0;
+		    if(zero==one){
+		        sum=zero+one;
+		    }else{
+		        if(nums[l]==0){
+		            zero--;
+		        }else{
+		            one--;
+		        }
+		    }
+		    l++;
+		    max=Math.max(sum,max);
+		    
+		}
+		System.out.println(max);
+	}
+}
+```
+
+# Magical Number 
+number to binary replace 1 by 2 and 0 by 1 find usm odd or even
+String Binary= Integer.toBinaryString(i);
+String modified=binary.replace('0','x').replace('1','2').replace('x','1');
+sum+=s.charAt(i)-'0';
+
+# Distributing Choclate
+
+Sort then keep sliding window of lenght number of students to fond minimum difference.
+
+# Two sum all pair
+maintain hs to check if pair exist for each and print
+
+# Bulb Toggle
+
+main logic for given n with n number of bulbs find the perfect square till that number,that is the answer.
+
+# Stair Case Problem
+each stem person 1 0r 2 steps.
+
+n=1
+1 posisbilty
+
+n=2
+(1,1)
+(2)
+
+n=3
+(1,1,1)
+(1,2) 
+(2,1)
+
+n=4
+(1,1,1,1)
+(2,2)
+(2,1,1)
+(3,1)
+(1,3)
+
+Recursion so BaseCase:
+if(n==1) return 1
+if(n==2) return 2
+
+f(n)=f(n-1)+f(n-2)
+
+# Team formation
+1 experince ,1 fresh 
+N expereince  M fresher
+ team size 4
+
+ therefor m*n/4 corener case val < min(resh,exxp) ok otherwisse max
+
+ # Seating diff row and column
+ nfactorial 

@@ -109,6 +109,10 @@ boolean equals = s1.equals(s2); // Compare strings for equality
 
 String reversed = new StringBuilder(s).reverse().toString(); // Reverse a string
 
+String Binary= Integer.toBinaryString(i);
+String modified=binary.replace('0','x').replace('1','2').replace('x','1');
+sum+=s.charAt(i)-'0';
+
 txt.toUpperCase()
 txt.toLowerCase()
 
