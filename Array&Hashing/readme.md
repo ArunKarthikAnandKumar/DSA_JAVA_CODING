@@ -220,3 +220,86 @@ class Solution {
     }
 }
 ```
+
+# Buy and Sell Stock
+You are given an integer array prices where prices[i] is the price of NeetCoin on the ith day.
+You may choose a single day to buy one NeetCoin and choose a different day in the future to sell it.
+Return the maximum profit you can achieve. You may choose to not make any transactions, in which case the profit would be 0.
+Example 1:
+Input: prices = [10,1,5,6,7,1]
+
+Output: 6
+Copy
+Explanation: Buy prices[1] and sell prices[4], profit = 7 - 1 = 6.
+Example 2:
+Input: prices = [10,8,7,5,2]
+
+Output: 0
+
+  
+ ```
+//In this instead of incerementing l by 1 put l in place of r
+class Solution {
+    public int maxProfit(int[] prices) {
+        int n=prices.length;
+        int l=0;
+        int r=1;
+        int max=0;
+       while( r<n){
+            if(prices[l]>prices[r]){
+                l=r;
+            }else{
+                max=Math.max(prices[r]-prices[l],max);
+            }
+            r++;
+        }
+        return max;
+        
+    }
+}
+```
+	
+# 122. Best Time to Buy and Sell Stock II
+Companies
+You are given an integer array prices where prices[i] is the price of a given stock on the ith day.
+On each day, you may decide to buy and/or sell the stock. You can only hold at most one share of the stock at any time. However, you can buy it then immediately sell it on the same day.
+Find and return the maximum profit you can achieve.
+ 
+Example 1:
+Input: prices = [7,1,5,3,6,4]
+Output: 7
+Explanation: Buy on day 2 (price = 1) and sell on day 3 (price = 5), profit = 5-1 = 4.
+Then buy on day 4 (price = 3) and sell on day 5 (price = 6), profit = 6-3 = 3.
+Total profit is 4 + 3 = 7.
+Example 2:
+Input: prices = [1,2,3,4,5]
+Output: 4
+Explanation: Buy on day 1 (price = 1) and sell on day 5 (price = 5), profit = 5-1 = 4.
+Total profit is 4.
+Example 3:
+Input: prices = [7,6,4,3,1]
+Output: 0
+Explanation: There is no way to make a positive profit, so we never buy the stock to achieve the maximum profit of 0.
+ 
+Constraints:
+•	1 <= prices.length <= 3 * 104
+•	0 <= prices[i] <= 104
+
+```
+class Solution {
+    public int maxProfit(int[] prices) {
+        int l=0;
+        int profit=0;
+        int n=prices.length;
+        for(int r=1;r<n;r++){
+            if(prices[l]<prices[r]){
+                profit+=prices[r]-prices[l];
+                l=r;
+            }else{
+                l=r;
+            }
+        }
+        return profit;
+    }
+}
+```
