@@ -85,11 +85,22 @@ Character element = vow.get(0); // Get element at index 0
 // Modify element at index 1
 vow.set(1, 'z');
 
+//for adding all elements of array in list;
+ls.addAll(Arrays.asList(arr))
+
+dont use add all as time complexiyty more use for and add.
+
 ```
 # Array to List
 ```
 Character[] vowelsArray = {'a', 'e', 'i', 'o', 'u'};
 List<Character> vowelsList = Arrays.asList(vowelsArray);
+
+```
+# List to Array
+```
+List<String> res=new ArrayList<>();
+return res.toArray(new String[0]);
 
 ```
 
@@ -172,5 +183,21 @@ String arrayString = Arrays.toString(ch); // Convert array to string representat
 
 int[] dp = new int[n];
 Arrays.fill(dp, 1); // Fill array with 1
+
+
 ```
 
+# Operators
+^ if we use this on two even if num different they will be xored
+this can be used to check similarity if 0 same ,1 different;
+
+For checking dont convert to binary string and check directly use while loop
+
+```
+ int xor=start^goal;
+        int c=0;
+       while(xor!=0){
+        c+=xor&1;
+        xor>>=1;
+       }
+```
