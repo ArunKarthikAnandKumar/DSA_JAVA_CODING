@@ -201,3 +201,14 @@ For checking dont convert to binary string and check directly use while loop
         xor>>=1;
        }
 ```
+
+select s.name,f.friend_id from 
+STUDENTS s 
+NATURAL JOIN
+FRIENDS f
+NATURAL join
+PACKAGES p
+where 
+(select s.salary where id=s.id)<
+(select s.salary where id=(select f.friend_id  where id=s.id); )
+order by s.name asc;
