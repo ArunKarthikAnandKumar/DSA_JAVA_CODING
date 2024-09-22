@@ -184,8 +184,34 @@ String arrayString = Arrays.toString(ch); // Convert array to string representat
 int[] dp = new int[n];
 Arrays.fill(dp, 1); // Fill array with 1
 
+```
+# SubArray
+```
+//For creating subArray
+Arrays.copyOfRange();
+copies form i to j-1
+
+int []org ={1,2,3,4,5,6,7};
+int sub[]=Arrays.copyOfRange(org,0,4);
+
 
 ```
+
+
+# Stream SubArray
+
+```
+int this we use filter and toArray
+import java.util.stream.IntStream;
+	int sub[]=IntStream.of(org)
+		.filter(n->n%2==0)
+		.toArray(); 
+
+```
+# Subset
+for this create set
+can also use stream collectors
+
 
 # Operators
 ^ if we use this on two even if num different they will be xored
@@ -201,7 +227,6 @@ For checking dont convert to binary string and check directly use while loop
         xor>>=1;
        }
 ```
-
 select s.name,f.friend_id from 
 STUDENTS s 
 NATURAL JOIN

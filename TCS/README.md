@@ -1,4 +1,4 @@
-# Minmum,Maximum ,No of Ways
+# 1. Minmum,Maximum ,No of Ways
 it is Dynamic Programing
 
 You have planned some train traveling one year in advance. The days of the year in which you will travel are given as an integer array days. Each day is an integer from 1 to 365.
@@ -66,14 +66,55 @@ Return Value:
 
 After processing all days, the final cost for the last travel day (lastDay) is stored in dp[lastDay], which is returned as the result.
 
+```
+class Solution {
+    public int mincostTickets(int[] days, int[] costs) {
+        int lastDay = days[days.length-1];
+        int[] dp = new int[lastDay+1];
+        // Base case: no travel
+        dp[0] = 0;
+        
+        // Iterate over each day
+        for (int i = 1; i <= lastDay; i++) {
+            // If day i is not a travel day, then cost is same as day before
+            if (!contains(days, i)) {
+                dp[i] = dp[i-1];
+            }
+            // Otherwise, we need to find the minimum cost of the three options
+            else {
+                // Option 1: 1-day pass
+                int cost1 = dp[i-1] + costs[0];
+                // Option 2: 7-day pass
+                int cost2 = (i >= 7) ? dp[i-7] + costs[1] : costs[1];
+                // Option 3: 30-day pass
+                int cost3 = (i >= 30) ? dp[i-30] + costs[2] : costs[2];
+                // Take the minimum cost of the three options
+                dp[i] = Math.min(cost1, Math.min(cost2, cost3));
+            }
+        }
+        // Return the cost for the last day
+        return dp[lastDay];
+    }
+    
+    // Helper method to check if an array contains a given value
+    private boolean contains(int[] arr, int val) {
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] == val) {
+                return true;
+            }
+        }
+        return false;
+    }
+}
+```
 
-# For checking based on count 2 methods
+# 2. For checking based on count 2 methods
  - 1 Using HashMap 
  - 2 Using ArrayTo count Occurence
 
  # While printing in for loop instead of using break can use return
 
- # Container with max water
+ # 3. Container with max water
  Concept 
  2 pointer approach one for left and another for right
  increment if height{l}< height(r)
@@ -217,3 +258,40 @@ public class Solution {
   reverse left till k-1
  revers right k till n;
   reverse whole array
+
+  # TCS DAY 2
+
+  Given an array of positive integer nums and a positive integer target, return the minimal length of a subarray whose sum is greater than or equal to the target. If there is no such subarray, return 0 instead.
+
+Example 1
+Input: 
+7
+6
+2 3 1 2 4 3
+Output: 
+2
+
+```
+public class Solution {
+    public int minSubArrayLen(int target, int[] nums) {
+        int n = nums.length;
+        int minLength = Integer.MAX_VALUE;
+        int left = 0, currentSum = 0;
+
+        for (int right = 0; right < n; right++) {
+            currentSum += nums[right];
+
+            // Shrink the window from the left if the sum is greater than or equal to the target
+            while (currentSum >= target) {
+                minLength = Math.min(minLength, right - left + 1);
+                currentSum -= nums[left];
+                left++;
+            }
+        }
+
+        // If no valid subarray found, return 0
+        return minLength == Integer.MAX_VALUE ? 0 : minLength;
+    }
+}
+
+```

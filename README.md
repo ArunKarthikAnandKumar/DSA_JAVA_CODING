@@ -111,7 +111,7 @@ count number of elements in arrya such that right is greater than left;
 ```
 int count=0;
 int arr[]={1,2,4,3,7,6};
-int max=INTEGER.MIN_VALUE;
+int max=Integer.MIN_VALUE;
 for(int i=0;i<n;i++){
     if(arr[i]>max){
         count++;
