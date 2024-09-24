@@ -310,3 +310,84 @@ There are 4 occurrences of [0] as a subarray.
 There are 2 occurrences of [0,0] as a subarray.
 There is no occurrence of a subarray with a size more than 2 filled with 0. Therefore, we return 6.
 
+
+
+# Find the Duplicate Number
+
+## Problem Statement
+Given an array of integers `nums` containing `n + 1` integers where each integer is in the range `[1, n]` inclusive, there is only one repeated number in `nums`. Your task is to return this repeated number.
+
+### Constraints
+- You must solve the problem without modifying the array `nums`.
+- Use only constant extra space.
+
+## Examples
+
+### Example 1
+**Input:**  
+`nums = [1, 3, 4, 2, 2]`  
+**Output:**  
+`2`
+
+### Example 2
+**Input:**  
+`nums = [3, 1, 3, 4, 2]`  
+**Output:**  
+`3`
+
+Logic
+Follow the below steps to solve the problem:
+
+Calculate the sum of array elements and the sum of first (N-1) natural numbers
+Return (array sum) – ((N-1) natural numbers sum)
+
+```
+  static int findRepeating(int[] arr, int N)
+    {
+        // Find array sum and subtract sum
+        // first n-1 natural numbers from it
+        // to find the result.
+ 
+        int sum = 0;
+        for (int i = 0; i < N; i++)
+            sum += arr[i];
+        return sum - (((N - 1) * N) / 2);
+    }
+```
+
+#  Subarray Sum Equals K
+Given an array of integers nums and an integer k, return the total number of subarrays whose sum equals to k.
+
+A subarray is a contiguous non-empty sequence of elements within an array.
+
+
+Example 1:
+
+Input: nums = [1,1,1], k = 2
+Output: 2
+Example 2:
+
+Input: nums = [1,2,3], k = 3
+Output: 2
+![Architecture Diagram](SumEqualK.png)
+
+```
+class Solution {
+    public int subarraySum(int[] nums, int k) {
+        HashMap<Integer,Integer> hm=new HashMap<>();
+        hm.put(0,1);
+        int curr=0;
+        int res=0;
+        for(int n:nums){
+            curr+=n;
+            int dif=curr-k;
+            res+=hm.getOrDefault(dif,0);
+            hm.put(curr,hm.getOrDefault(curr,0)+1);
+
+        }
+        return res;
+
+        
+    }
+}
+```
