@@ -310,6 +310,35 @@ There are 4 occurrences of [0] as a subarray.
 There are 2 occurrences of [0,0] as a subarray.
 There is no occurrence of a subarray with a size more than 2 filled with 0. Therefore, we return 6.
 
+![Architecture Diagram](ZeroSubArray.png)
+
+Logic 2 variable one for count and another for result
+kee counting contn and add to res if not zero reset and continue
+
+ex:
+1200
+count=1
+res=1
+count=2
+res=1+2
+```
+class Solution {
+    public long zeroFilledSubarray(int[] nums) {
+        long res=0,count=0;
+        for(int n:nums){
+            if(n==0){
+                count++;
+                res+=count;
+            }else{
+                count=0;
+            }
+
+        }
+        return res;
+        
+    }
+}
+```
 
 
 # Find the Duplicate Number
@@ -369,7 +398,14 @@ Example 2:
 
 Input: nums = [1,2,3], k = 3
 Output: 2
-![Architecture Diagram](SumEqualK.png)
+
+hashMap with count 0:1 suppose if whole array sum k;
+keep adding current value;
+
+![Architecture Diagram](SumSubK.png)
+
+logic similar to sum we check the curr sum and diff if exist in HashMap add add that count to result 
+and add current count value to HM
 
 ```
 class Solution {
@@ -390,4 +426,59 @@ class Solution {
         
     }
 }
+```
+
+# Subarray Sums Divisible by K
+Solved
+Medium
+Topics
+Companies
+Given an integer array nums and an integer k, return the number of non-empty subarrays that have a sum divisible by k.
+
+A subarray is a contiguous part of an array.
+
+ 
+
+Example 1:
+
+Input: nums = [4,5,0,-2,-3,1], k = 5
+Output: 7
+Explanation: There are 7 subarrays with a sum divisible by k = 5:
+[4, 5, 0, -2, -3, 1], [5], [5, 0], [5, 0, -2, -3], [0], [0, -2, -3], [-2, -3]
+Example 2:
+
+Input: nums = [5], k = 9
+Output: 0
+    
+
+```
+import java.util.HashMap;
+
+class Solution {
+    public int subarraysDivByK(int[] nums, int k) {
+        int res = 0;
+        int currSum = 0;
+        int[] prefixSum = new int[k]; // Store frequency of remainders
+        prefixSum[0] = 1; // There's one way to get a sum divisible by `k` (empty subarray)
+
+        for (int n1 : nums) {
+            currSum += n1;
+            int rem = currSum % k;
+
+            // Handle negative remainders to ensure they're positive
+            if (rem < 0) {
+                rem += k;
+            }
+
+            // Add the count of subarrays that had the same remainder
+            res += prefixSum[rem];
+
+            // Increment the count of this remainder
+            prefixSum[rem]++;
+        }
+
+        return res;
+    }
+}
+
 ```
