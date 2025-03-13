@@ -1,3 +1,9 @@
+# Taking Inputs:
+string s ="";
+String [] enttry=s.split(";");\
+int n=Integer.parseInt(s[0]);
+float f=float.parseFloat(s[0]);
+
 # 1. Minmum,Maximum ,No of Ways
 it is Dynamic Programing
 
@@ -114,6 +120,55 @@ class Solution {
 
  # While printing in for loop instead of using break can use return
 
+ # Given a sequence of numbers in an array A. The task is to break short the array such the twice minimum value in the array should be greater than the maximum value in the array. The number of values removed from the array should be minimal. The removal of elements from the array can be done from the start or from the end of the array as per the condition mentioned above.
+
+
+Sample test cases :
+Input 1 :
+7
+2 
+4 
+5 
+6 
+8 
+9 
+1
+Output 1 :
+3
+Input 2 :
+4
+4
+7
+5
+6
+Output 2 :
+0
+
+logic sliding window 
+first find valid subarray 
+remove its length from rest to find required result
+
+```
+public static int minRemovals(int[] arr, int n) {
+    int left = 0;
+    int minRemovals = n;  // Initially, assume we need to remove all elements
+
+    // Traverse the array with the right pointer
+    for (int right = 0; right < n; right++) {
+        // For each `right`, move `left` to shrink the window if the condition is violated
+        while (left <= right && 2 * findMin(arr, left, right) <= findMax(arr, left, right)) {
+            left++;
+        }
+        // Calculate the current valid subarray length
+        int validLength = right - left + 1;
+        // Update the minimum removals needed
+        minRemovals = Math.min(minRemovals, n - validLength);
+    }
+
+    return minRemovals;
+}
+
+```
  # 3. Container with max water
  Concept 
  2 pointer approach one for left and another for right
@@ -148,6 +203,8 @@ class Solution {
  # Minimum merger opeartions to palindrome
  2 pointer
  if not same increment value of left or right based on value
+
+ Main thing in this 2 ptr is to check weteher to merge from left or right based on which is greater.
 
  ```
  import java.util.Scanner;
@@ -194,8 +251,57 @@ public class Solution {
         return mergeCount;
     }
 }
+```
 
- ```
+# Time for Maximum Arrival of Guest
+```
+import java.util.*;
+
+public class MaxGuestsAtEvent {
+    public static void main(String[] args) {
+        int[] arrival = { 1, 2, 4, 7, 8, 12 };
+        int[] departure = { 2, 7, 8, 12, 10, 15 };
+
+        findMaxGuests(arrival, departure);
+    }
+
+    public static void findMaxGuests(int[] arrival, int[] departure) {
+        int n = arrival.length;
+
+        // Sort both arrival and departure arrays
+        Arrays.sort(arrival);
+        Arrays.sort(departure);
+
+        // Initialize variables to keep track of the maximum number of guests
+        int maxGuests = 0;
+        int currentGuests = 0;
+        int maxTime = 0;
+
+        int i = 0, j = 0;
+
+        // Iterate through both arrival and departure arrays
+        while (i < n && j < n) {
+            // If next event is an arrival, increment guests
+            if (arrival[i] <= departure[j]) {
+                currentGuests++; // A guest arrives
+                if (currentGuests > maxGuests) {
+                    maxGuests = currentGuests;
+                    maxTime = arrival[i]; // Record the time when max guests were present
+                }
+                i++; // Move to the next arrival
+            } else {
+                // If next event is a departure, decrement guests
+                currentGuests--; // A guest departs
+                j++; // Move to the next departure
+            }
+        }
+
+        // Output the result
+        System.out.println("Maximum number of guests is " + maxGuests + ", present at time " + maxTime);
+    }
+}
+
+```
 
  # sliding window
  Main concept dont recalculate for all ,first calculate for window sizee
@@ -321,6 +427,7 @@ count=1
 res=1
 count=2
 res=1+2
+if continuous broken set count=0
 ```
 class Solution {
     public long zeroFilledSubarray(int[] nums) {
@@ -384,7 +491,72 @@ Return (array sum) – ((N-1) natural numbers sum)
     }
 ```
 
-#  Subarray Sum Equals K
+# minimum Sub array Sum equal to Target
+Given an array of positive integer nums and a positive integer target, return the minimal length of a subarray whose sum is greater than or equal to the target. If there is no such subarray, return 0 instead.
+
+```
+class Solution {
+    public int minSubArrayLen(int target, int[] nums) {
+        int l=0;
+        int sum=0;
+        int min=Integer.MAX_VALUE;
+        int n=nums.length;
+        for(int r=0;r<n;r++){
+            sum+=nums[r];
+            while(sum>=target){
+            min=Math.min(min,r-l+1);
+                sum-=nums[l];
+                l++;
+            }
+        }
+        if(min==Integer.MAX_VALUE){
+            min=0;
+        }
+        return min;
+    }
+}
+```
+# Index of first occurence subarray sum equal to target
+logic keep adding and move to right till sum less
+if sum greater keep decrement left till sum equal then check 
+
+```
+import java.util.*;
+public class Main
+{
+	public static void main(String[] args) {
+		Scanner sc=new Scanner(System.in);
+		int n=sc.nextInt();
+		int arr[]=new int[n];
+		for(int i=0;i<n;i++){
+		    arr[i]=sc.nextInt();
+		}
+		int k=sc.nextInt();
+		int cursum=0;
+		int l=0;
+		boolean flag=false;
+		for(int r=0;r<n;r++){
+		    cursum+=arr[r];
+		    while(cursum>k && l<r){
+		        cursum-=arr[l];
+		        l++;
+		    }
+		    if(cursum==k){
+		        flag=true;
+		        System.out.println(l+" "+(r));
+		    }
+		}
+		if(flag==false){
+		    System.out.println("Not Found");
+		}
+	
+	}
+}
+
+```
+
+
+#  total Subarray Sum Equals K
 Given an array of integers nums and an integer k, return the total number of subarrays whose sum equals to k.
 
 A subarray is a contiguous non-empty sequence of elements within an array.
@@ -482,3 +654,90 @@ class Solution {
 }
 
 ```
+
+# Maximum Sub Array
+Example 1:
+
+
+Input: n=9
+
+nums = [-2,1,-3,4,-1,2,1,-5,4]
+
+Output: 6
+
+Explanation: The subarray [4,-1,2,1] has the largest sum 6.
+
+Logic sliding window approach if currSum lessthan zero then set to 0;
+```
+import java.util.*;
+public class Main
+{
+	public static void main(String[] args) {
+		Scanner sc=new Scanner(System.in);
+		int n=sc.nextInt();
+		int arr[]=new int[n];
+		for(int i=0;i<n;i++){
+		    arr[i]=sc.nextInt();
+		}
+		int max=Integer.MIN_VALUE;
+		int cursum=0;
+		for(int r=0;r<n;r++){
+		    cursum+=arr[r];
+		    if(cursum<0){
+		        cursum=0;
+		    }
+		    max=Math.max(max,cursum);
+		}
+		System.out.println(max);
+	
+	}
+}
+
+```
+
+# 3 sum
+```
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt(); // Size of the array
+        int arr[] = new int[n];
+        
+        // Input array
+        for (int i = 0; i < n; i++) {
+            arr[i] = sc.nextInt();
+        }
+
+        int target = sc.nextInt(); // Target sum
+        boolean flag = false;
+
+        // Find triplet
+        for (int i = 0; i < n - 2; i++) {
+            Set<Integer> hs = new HashSet<>(); // Reset the HashSet for every i
+            int t1 = target - arr[i];
+
+            for (int j = i + 1; j < n; j++) {
+                int dif = t1 - arr[j];
+
+                if (hs.contains(dif)) {
+                    System.out.println(arr[i] + " " + dif + " " + arr[j]);
+                    flag = true;
+                    return; // Terminate after finding the first triplet
+                }
+                
+                hs.add(arr[j]);
+            }
+        }
+
+        if (!flag) {
+            System.out.println("No triplet found with the given sum");
+        }
+
+        sc.close();
+    }
+}
+
+```
+also solvable using 2 ptr approach after sorting
